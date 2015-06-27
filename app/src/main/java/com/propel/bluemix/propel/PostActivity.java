@@ -70,13 +70,14 @@ public class PostActivity extends AppCompatActivity {
                 String date_time = date + "T" + time;
                 Item item = new Item(title, descr, date_time);
                 DbSingleton dbSingleton = DbSingleton.getInstance();
-                Log.d("POST ", item.generateSql());
+                int id = dbSingleton.getItemList().size() + 2;
+                Log.d("POST ", item.generateSql(id));
 
-                dbSingleton.insertQueries(item.generateSql());
+                dbSingleton.insertQueries(item.generateSql(id));
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, new PostFragment()).commit();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.content_frame, new PostFragment()).commit();
                 finish();
             }
         });
