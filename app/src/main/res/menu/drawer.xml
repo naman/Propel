@@ -10,7 +10,11 @@
             android:checkable="true"
             android:icon="@drawable/abc_ab_share_pack_mtrl_alpha"
             android:title="@string/post_goal"/>
-
+        <item
+            android:id="@+id/nav_PUSH"
+            android:checkable="true"
+            android:icon="@drawable/abc_ab_share_pack_mtrl_alpha"
+            android:title="@string/post_goal"/>
     </group>
     <item android:title="">
         <menu>

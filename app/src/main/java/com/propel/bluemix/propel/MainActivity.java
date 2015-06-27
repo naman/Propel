@@ -78,7 +78,10 @@ public class MainActivity extends AppCompatActivity {
                                 Intent post = new Intent(MainActivity.this, PostActivity.class);
                                 startActivity(post);
                                 break;
-
+                            case R.id.nav_PUSH:
+                                Intent push = new Intent(MainActivity.this, PushActivity.class);
+                                startActivity(push);
+                                break;
 
                         }
 
