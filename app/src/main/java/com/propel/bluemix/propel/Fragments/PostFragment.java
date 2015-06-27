@@ -12,20 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibm.mobile.services.data.IBMData;
-import com.ibm.mobile.services.data.IBMDataObject;
 import com.propel.bluemix.propel.Adapters.PostsAdapter;
 import com.propel.bluemix.propel.Data.Item;
-import com.propel.bluemix.propel.Database.DbContract;
 import com.propel.bluemix.propel.Database.DbSingleton;
 import com.propel.bluemix.propel.PostActivity;
 import com.propel.bluemix.propel.R;
-import com.propel.bluemix.propel.Utils.BlueListApplication;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import bolts.Continuation;
-import bolts.Task;
 
 public class PostFragment extends Fragment {
     RecyclerView recyclerView;
