@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.propel.bluemix.propel"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="com.propel.bluemix.propel"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -23,10 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".EditActivity"
-            android:label="@string/title_activity_edit">
         </activity>
         <activity
             android:name=".PostActivity"
