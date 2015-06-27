@@ -45,11 +45,12 @@ public class Item extends IBMDataObject implements Serializable {
         this.description = description;
     }
 
-    public String generateSql() {
-        String query_normal = "INSERT INTO %s VALUES (%s, %s, %s);";
+    public String generateSql(int id) {
+        String query_normal = "INSERT INTO %s VALUES ('%d',%s, %s, %s);";
         String query = String.format(
                 query_normal,
                 DbContract.Posts.TABLE_NAME,
+                id,
                 DatabaseUtils.sqlEscapeString(name),
                 DatabaseUtils.sqlEscapeString(description),
                 DatabaseUtils.sqlEscapeString(post_date));

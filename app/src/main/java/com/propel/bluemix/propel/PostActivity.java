@@ -2,7 +2,6 @@ package com.propel.bluemix.propel;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -74,8 +73,6 @@ public class PostActivity extends AppCompatActivity {
                 Log.d("POST ", item.generateSql());
 
                 dbSingleton.insertQueries(item.generateSql());
-                SQLiteDatabase db = 
-
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()

@@ -50,7 +50,7 @@ public class DbSingleton {
         getReadOnlyDatabase();
 
         String sortOrder = DbContract.Posts.ID + ASCENDING;
-        Cursor cur = mDb.query(
+        Cursor cur = mDb.query( 
                 DbContract.Posts.TABLE_NAME,
                 DbContract.Posts.FULL_PROJECTION,
                 null,
