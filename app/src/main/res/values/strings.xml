@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">propel</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="item_to_buy">What do you want to buy?</string>
+    <string name="title_activity_edit">Edit Item</string>
+    <string name="done">Done</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="title_text">GROCERY LIST</string>
+
+    <!--Navigation Drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--Drawer Items-->
+    <string name="post_goal">Post</string>
+    <string name="view_feed">Updates</string>
+    <string name="title_activity_post">PostActivity</string>
+
+    <!--Buttons-->
+    <string name="date_picker">Pick date</string>
+    <string name="time_picker">Pick time</string>
+    <string name="title_activity_comment">CommentActivity</string>
+
+</resources>
