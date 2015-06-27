@@ -24,6 +24,7 @@ import android.util.Log;
 import com.ibm.mobile.services.core.IBMBluemix;
 import com.ibm.mobile.services.data.IBMData;
 import com.propel.bluemix.propel.Data.Item;
+import com.propel.bluemix.propel.Database.DbSingleton;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -97,6 +98,8 @@ public final class BlueListApplication extends Application {
 		// Read from properties file.
 		Properties props = new java.util.Properties();
 		Context context = getApplicationContext();
+		DbSingleton.init(this);
+
 		try {
 			AssetManager assetManager = context.getAssets();
 			props.load(assetManager.open(PROPS_FILE));

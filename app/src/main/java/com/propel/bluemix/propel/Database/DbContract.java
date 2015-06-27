@@ -11,6 +11,7 @@ public class DbContract {
     private static final String TEXT_TYPE = " TEXT";
     private static final String INT_TYPE = " INTEGER";
     private static final String REAL_TYPE = " REAL";
+    private static final String AUTOINCREMENT = " AUTOINCREMENT";
     private static final String COMMA_SEP = ",";
     private static final String PRIMARY_KEY = " PRIMARY KEY";
 
@@ -26,7 +27,7 @@ public class DbContract {
         public static final String DATE_TIME = "date_time";
 
         public static final String[] FULL_PROJECTION = {
-                ID,
+                _ID,
                 TITLE,
                 DESCRIPTION,
                 DATE_TIME
@@ -34,7 +35,7 @@ public class DbContract {
         public static final String CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME
                         + " ("
-                        + ID + INT_TYPE + PRIMARY_KEY + COMMA_SEP
+                        + _ID + INT_TYPE + PRIMARY_KEY + AUTOINCREMENT + COMMA_SEP
                         + TITLE + TEXT_TYPE + COMMA_SEP
                         + DESCRIPTION + TEXT_TYPE + COMMA_SEP
                         + DATE_TIME + TEXT_TYPE
@@ -47,7 +48,7 @@ public class DbContract {
     public static abstract class Comments implements BaseColumns {
         public static final String TABLE_NAME = "comments";
         public static final String ID = "id";
-        public static final String POST_ID = "id";
+        public static final String POST_ID = "posts_id";
         public static final String COMMENT_TEXT = "comment_text";
         public static final String LIKES = "likes";
         public static final String DATE_TIME = "date_time";
@@ -65,7 +66,7 @@ public class DbContract {
                         + POST_ID + COMMA_SEP
                         + TEXT_TYPE + COMMA_SEP
                         + COMMENT_TEXT + TEXT_TYPE + COMMA_SEP
-                        + LIKES + INT_TYPE + COMMENT_TEXT
+                        + LIKES + INT_TYPE + COMMA_SEP
                         + DATE_TIME + TEXT_TYPE
                         + " );";
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;

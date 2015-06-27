@@ -46,7 +46,7 @@ public class DbSingleton {
         }
     }
 
-    private ArrayList<Item> getItemList() {
+    public ArrayList<Item> getItemList() {
         getReadOnlyDatabase();
 
         String sortOrder = DbContract.Posts.ID + ASCENDING;
@@ -77,7 +77,7 @@ public class DbSingleton {
     }
 
 
-    private ArrayList<Comment> getCommentByPostId() {
+    public ArrayList<Comment> getCommentByPostId() {
         getReadOnlyDatabase();
         String sortOrder = DbContract.Comments.ID + ASCENDING;
         Cursor cur = mDb.query(
@@ -101,13 +101,11 @@ public class DbSingleton {
         return items;
     }
 
-    public void insertQueries(ArrayList<String> queries) {
+    public void insertQueries(String query) {
 
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         db.beginTransaction();
-        for (String query : queries) {
-            db.execSQL(query);
-        }
+        db.execSQL(query);
         db.setTransactionSuccessful();
         db.endTransaction();
     }
