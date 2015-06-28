@@ -90,7 +90,7 @@ public class PostActivity extends AppCompatActivity {
 
 //                FragmentManager fragmentManager = getSupportFragmentManager();
 //                fragmentManager.beginTransaction()
-//                        .replace(R.id.content_frame, new PostFragment()).commit();
+//                        .replace(R.id.content_frame, new ViewFragment()).commit();
 //                finish();
                 onBackPressed();
             }

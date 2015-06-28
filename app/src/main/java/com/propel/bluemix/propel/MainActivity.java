@@ -11,13 +11,11 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.ibm.mobile.services.data.IBMDataException;
-import com.ibm.mobile.services.data.IBMDataObject;
 import com.ibm.mobile.services.data.IBMQuery;
 import com.propel.bluemix.propel.Data.Item;
-import com.propel.bluemix.propel.Database.DbContract;
 import com.propel.bluemix.propel.Database.DbSingleton;
 import com.propel.bluemix.propel.Fragments.ABCFragment;
-import com.propel.bluemix.propel.Fragments.PostFragment;
+import com.propel.bluemix.propel.Fragments.ViewFragment;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -148,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
                         switch (id) {
                             case R.id.nav_feed:
                                 fragmentManager.beginTransaction()
-                                        .replace(R.id.content_frame, new PostFragment()).commit();
+                                        .replace(R.id.content_frame, new ViewFragment()).commit();
                                 break;
-                            case R.id.nav_updates:
-                                Intent post = new Intent(MainActivity.this, PostActivity.class);
-                                startActivity(post);
-                                break;
+//                            case R.id.nav_updates:
+//                                Intent post = new Intent(MainActivity.this, PostActivity.class);
+//                                startActivity(post);
+//                                break;
                             case R.id.nav_PUSH:
                                 Intent push = new Intent(MainActivity.this, PushActivity.class);
                                 startActivity(push);

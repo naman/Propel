@@ -1,14 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_updates"
-            android:checkable="true"
-            android:icon="@drawable/abc_ic_clear_mtrl_alpha"
-            android:title="Post"/>
-        <item
             android:id="@+id/nav_feed"
             android:checkable="true"
-            android:icon="@drawable/abc_ab_share_pack_mtrl_alpha"
+            android:icon="@drawable/ic_feed_black_24dp"
             android:title="See Posts"/>
         <item
             android:id="@+id/nav_PUSH"
