@@ -2,6 +2,7 @@ package com.propel.bluemix.propel;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,7 @@ import bolts.Task;
 
 import static com.propel.bluemix.propel.R.color.darkgreen;
 import static com.propel.bluemix.propel.R.color.white;
+import static com.propel.bluemix.propel.R.color.yellow;
 
 @SuppressWarnings("ResourceType")
 public class PostActivity extends AppCompatActivity {
@@ -59,7 +61,7 @@ public class PostActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit_post);
         pickdate = (EditText) findViewById(R.id.date);
         picktime = (EditText) findViewById(R.id.time);
-        submit.setBackgroundColor(darkgreen);
+        submit.setBackgroundColor(Color.CYAN);
         submit.setTextColor(white);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {

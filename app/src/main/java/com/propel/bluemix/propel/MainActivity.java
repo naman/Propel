@@ -146,26 +146,26 @@ public class MainActivity extends AppCompatActivity {
                         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                         int id = menuItem.getItemId();
                         switch (id) {
-                            case R.id.nav_feed:
-                                fragmentManager.beginTransaction()
-                                        .replace(R.id.content_frame, new PostFragment()).commit();
-                                break;
+//                            case R.id.nav_feed:
+//                                fragmentManager.beginTransaction()
+//                                        .replace(R.id.content_frame, new PostFragment()).commit();
+//                                break;
                             case R.id.nav_updates:
                                 Intent post = new Intent(MainActivity.this, PostActivity.class);
                                 startActivity(post);
                                 break;
-                            case R.id.nav_PUSH:
-                                Intent push = new Intent(MainActivity.this, PushActivity.class);
-                                startActivity(push);
-                                break;
+//                            case R.id.nav_PUSH:
+//                                Intent push = new Intent(MainActivity.this, PushActivity.class);
+//                                startActivity(push);
+//                                break;
                             case R.id.nav_comm:
                                 Intent comm = new Intent(MainActivity.this, PushActivity.class);
                                 startActivity(comm);
                                 break;
-                            case R.id.frag:
-                                fragmentManager.beginTransaction()
-                                        .replace(R.id.content_frame, new ABCFragment()).commit();
-                                break;
+//                            case R.id.frag:
+//                                fragmentManager.beginTransaction()
+//                                        .replace(R.id.content_frame, new ABCFragment()).commit();
+//                                break;
                         }
 
                         mDrawerLayout.closeDrawers();
