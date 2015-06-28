@@ -17,8 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@drawable/abc_ic_clear_mtrl_alpha"
+        android:src="@drawable/plus"
         android:clickable="true"
+        app:borderWidth="0dp"
+
         android:layout_marginRight="40dp"
         android:layout_marginBottom="52dp"
         android:layout_alignParentBottom="true"

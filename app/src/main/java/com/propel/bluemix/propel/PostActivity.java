@@ -28,6 +28,10 @@ import java.util.Locale;
 import bolts.Continuation;
 import bolts.Task;
 
+import static com.propel.bluemix.propel.R.color.darkgreen;
+import static com.propel.bluemix.propel.R.color.white;
+
+@SuppressWarnings("ResourceType")
 public class PostActivity extends AppCompatActivity {
     public static final String CLASS_NAME = "PostActivity";
 
@@ -55,7 +59,8 @@ public class PostActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit_post);
         pickdate = (EditText) findViewById(R.id.date);
         picktime = (EditText) findViewById(R.id.time);
-
+        submit.setBackgroundColor(darkgreen);
+        submit.setTextColor(white);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {
 
