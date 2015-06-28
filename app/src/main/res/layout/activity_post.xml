@@ -10,10 +10,10 @@
               tools:context="com.propel.bluemix.propel.PostActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"/>
+        android:background="@color/darkgreen"/>
 
     <EditText
         android:id="@+id/edit_goal"
@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="52dp"
+
         android:text="Submit"/>
 
     <EditText
