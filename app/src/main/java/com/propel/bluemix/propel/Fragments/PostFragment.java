@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import com.ibm.mobile.services.data.IBMData;
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.propel.bluemix.propel.Adapters.PostsAdapter;
+import com.propel.bluemix.propel.BlueListApplication;
 import com.propel.bluemix.propel.Data.Item;
+import com.propel.bluemix.propel.Database.DbSingleton;
 import com.propel.bluemix.propel.PostActivity;
 import com.propel.bluemix.propel.R;
 
@@ -26,38 +28,25 @@ import bolts.Task;
 public class PostFragment extends Fragment {
     RecyclerView recyclerView;
     PostsAdapter postsAdapter;
-//    DbSingleton dbSingleton = DbSingleton.getInstance();
+    DbSingleton dbSingleton = DbSingleton.getInstance();
+    BlueListApplication blueListApplication;
     List<Item> posts;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        IBMData dataService = IBMData.initializeService();  //Initializing object storage capability
+        //IBMData dataService = IBMData.initializeService();  //Initializing object storage capability
 
-        Item.registerSpecialization(Item.class);  //Registering a specialization
+      //  Item.registerSpecialization(Item.class);  //Registering a specialization
 
-        final View view = inflater.inflate(R.layout.fragment_posts, container, false);
+//        blueListApplication = (BlueListApplication) getActivity().getApplication();
+//        blueListApplication.getItemList();
+
+        View view = inflater.inflate(R.layout.fragment_posts, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.list_posts);
 
 
-//        List<Item> posts = dbSingleton.getItemList();
+        List<Item> posts = dbSingleton.getItemList();
 
-        Bundle bundle=getArguments();
-        Item item = (Item) bundle.getSerializable("item");
-
-
-        item.save().continueWith(new Continuation<IBMDataObject, Void>() {
-
-            @Override
-            public Void then(Task<IBMDataObject> task) throws Exception {
-                if (task.isFaulted()) {
-                    // Handle errors
-                } else {
-                    Item myItem = (Item) task.getResult();
-                    posts.add(myItem);
-                }
-                return null;
-            }
-        });
         postsAdapter = new PostsAdapter(posts);
         recyclerView.setAdapter(postsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -65,7 +54,7 @@ public class PostFragment extends Fragment {
         fab_add_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(view.getContext(), "FAB pressed", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(view.getContext(), "FAB pressed", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), PostActivity.class);
                 startActivity(intent);

@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="52dp"
-        android:text="New Button"/>
+        android:text="Submit"/>
 
     <EditText
         android:id="@+id/date"

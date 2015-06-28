@@ -1,7 +1,10 @@
 package com.propel.bluemix.propel.Data;
 
+import android.database.DatabaseUtils;
+
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.ibm.mobile.services.data.IBMDataObjectSpecialization;
+import com.propel.bluemix.propel.Database.DbContract;
 
 import java.io.Serializable;
 
@@ -43,16 +46,16 @@ public class Item extends IBMDataObject implements Serializable {
         this.description = description;
     }
 
-//    public String generateSql(int id) {
-//        String query_normal = "INSERT INTO %s VALUES ('%d',%s, %s, %s);";
-//        String query = String.format(
-//                query_normal,
-//                DbContract.Posts.TABLE_NAME,
-//                id,
-//                DatabaseUtils.sqlEscapeString(name),
-//                DatabaseUtils.sqlEscapeString(description),
-//                DatabaseUtils.sqlEscapeString(post_date));
-//        return query;
-//
-//    }
+    public String generateSql(int id) {
+        String query_normal = "INSERT INTO %s VALUES ('%d',%s, %s, %s);";
+        String query = String.format(
+                query_normal,
+                DbContract.Posts.TABLE_NAME,
+                id,
+                DatabaseUtils.sqlEscapeString(name),
+                DatabaseUtils.sqlEscapeString(description),
+                DatabaseUtils.sqlEscapeString(post_date));
+        return query;
+
+    }
 }

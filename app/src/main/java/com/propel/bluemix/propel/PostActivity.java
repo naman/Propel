@@ -3,10 +3,10 @@ package com.propel.bluemix.propel;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,15 +15,26 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import com.ibm.mobile.services.data.IBMDataObject;
 import com.propel.bluemix.propel.Data.Item;
-import com.propel.bluemix.propel.Fragments.PostFragment;
+import com.propel.bluemix.propel.Database.DbContract;
+import com.propel.bluemix.propel.Database.DbSingleton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
+import bolts.Continuation;
+import bolts.Task;
+
 public class PostActivity extends AppCompatActivity {
+    public static final String CLASS_NAME = "PostActivity";
+
     Calendar myCalendar = Calendar.getInstance();
+    BlueListApplication blApplication;
+    List<Item> itemsList;
+
     private Toolbar mToolbar;
     private EditText goal;
     private EditText pickdate;
@@ -38,6 +49,7 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
         setUpToolbar();
 
+        blApplication = (BlueListApplication) getApplication();
         goal = (EditText) findViewById(R.id.edit_goal);
         description = (EditText) findViewById(R.id.edit_descr);
         submit = (Button) findViewById(R.id.submit_post);
@@ -61,22 +73,21 @@ public class PostActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = goal.getText().toString();
-                String descr = description.getText().toString();
-                String date = pickdate.getText().toString();
-                String time = picktime.getText().toString();
-                String date_time = date + "T" + time;
-                Item item = new Item(title, descr, date_time);
-//                DbSingleton dbSingleton = DbSingleton.getInstance();
-//                int id = dbSingleton.getItemList().size() + 2;
-//                Log.d("POST ", item.generateSql(id));
+                Log.d("SUBMIT", "butoon clicked");
+//                String title = goal.getText().toString();
+//                String descr = description.getText().toString();
+//                String date = pickdate.getText().toString();
+//                String time = picktime.getText().toString();
+//                String date_time = date + "T" + time;
+//                Item item = new Item(title, descr, date_time);
+                createItem(v);
 
-//                dbSingleton.insertQueries(item.generateSql(id));
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, new PostFragment()).commit();
-                finish();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.content_frame, new PostFragment()).commit();
+//                finish();
+                onBackPressed();
             }
         });
 
@@ -146,5 +157,55 @@ public class PostActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         pickdate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    public void createItem(View v) {
+        EditText itemToAdd = (EditText) findViewById(R.id.edit_goal);
+        String toAdd = itemToAdd.getText().toString();
+        Log.d("CREATE1","item1");
+        if (!toAdd.equals("")) {
+            Log.d("CREATE","item");
+            Item item = new Item(toAdd, "ABCDFR", "ASDASFD");
+
+            itemsList = blApplication.itemList;
+            Log.d("SIZE ITEM",itemsList.size()+"");
+            DbSingleton dbSingleton = DbSingleton.getInstance();
+            dbSingleton.clearDatabase(DbContract.Posts.TABLE_NAME);
+            int id = 1;
+            itemsList.add(item);
+
+            for (Item item1 : itemsList) {
+                String query = item1.generateSql(id);
+                Log.d("qUERY",query);
+                id++;
+                dbSingleton.insertQueries(query);
+            }
+
+            // Use the IBMDataObject to create and persist the Item object.
+            item.save().continueWith(new Continuation<IBMDataObject, Void>() {
+
+                @Override
+                public Void then(Task<IBMDataObject> task) throws Exception {
+                    // Log if the save was cancelled.
+                    if (task.isCancelled()) {
+                        Log.e(CLASS_NAME, "Exception : Task " + task.toString() + " was cancelled.");
+                    }
+                    // Log error message, if the save task fails.
+                    else if (task.isFaulted()) {
+                        Log.e(CLASS_NAME, "Exception : " + task.getError().getMessage());
+                    }
+
+                    // If the result succeeds, load the list.
+                    else {
+                        finish();
+                    }
+                    return null;
+                }
+
+            });
+
+            // Set text field back to empty after item is added.
+            itemToAdd.setText("");
+        }
     }
 }
