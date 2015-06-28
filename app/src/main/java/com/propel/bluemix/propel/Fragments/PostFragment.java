@@ -12,19 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibm.mobile.services.data.IBMData;
+import com.ibm.mobile.services.data.IBMDataObject;
 import com.propel.bluemix.propel.Adapters.PostsAdapter;
 import com.propel.bluemix.propel.Data.Item;
-import com.propel.bluemix.propel.Database.DbSingleton;
 import com.propel.bluemix.propel.PostActivity;
 import com.propel.bluemix.propel.R;
 
 import java.util.List;
 
+import bolts.Continuation;
+import bolts.Task;
+
 public class PostFragment extends Fragment {
     RecyclerView recyclerView;
     PostsAdapter postsAdapter;
-    DbSingleton dbSingleton = DbSingleton.getInstance();
-
+//    DbSingleton dbSingleton = DbSingleton.getInstance();
+    List<Item> posts;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,21 +39,25 @@ public class PostFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.list_posts);
 
 
-        List<Item> posts = dbSingleton.getItemList();
-//
-//        item.save().continueWith(new Continuation<IBMDataObject, Void>() {
-//
-//            @Override
-//            public Void then(Task<IBMDataObject> task) throws Exception {
-//                if (task.isFaulted()) {
-//                    // Handle errors
-//                } else {
-//                    Item myItem = (Item) task.getResult();
-//                    posts.add(myItem);
-//                }
-//                return null;
-//            }
-   //     });
+//        List<Item> posts = dbSingleton.getItemList();
+
+        Bundle bundle=getArguments();
+        Item item = (Item) bundle.getSerializable("item");
+
+
+        item.save().continueWith(new Continuation<IBMDataObject, Void>() {
+
+            @Override
+            public Void then(Task<IBMDataObject> task) throws Exception {
+                if (task.isFaulted()) {
+                    // Handle errors
+                } else {
+                    Item myItem = (Item) task.getResult();
+                    posts.add(myItem);
+                }
+                return null;
+            }
+        });
         postsAdapter = new PostsAdapter(posts);
         recyclerView.setAdapter(postsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

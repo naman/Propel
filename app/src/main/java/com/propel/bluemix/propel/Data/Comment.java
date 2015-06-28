@@ -2,19 +2,25 @@ package com.propel.bluemix.propel.Data;
 
 import java.util.Date;
 
-/**
- * Created by MananWason on 27-06-2015.
- */
 public class Comment {
     Item reference;
     String comment;
     int likes;
-    Date ofPublish;
+    String ofPublish;
 
-    public Comment(Item reference, String comment, int likes, Date ofPublish) {
+
+    public Comment(String comment, int likes, String ofPublish) {
         this.reference = reference;
         this.comment = comment;
         this.likes = likes;
+        this.ofPublish = ofPublish;
+    }
+
+    public String getOfPublish() {
+        return ofPublish;
+    }
+
+    public void setOfPublish(String ofPublish) {
         this.ofPublish = ofPublish;
     }
 
@@ -42,11 +48,5 @@ public class Comment {
         this.likes = likes;
     }
 
-    public Date getOfPublish() {
-        return ofPublish;
-    }
 
-    public void setOfPublish(Date ofPublish) {
-        this.ofPublish = ofPublish;
-    }
 }

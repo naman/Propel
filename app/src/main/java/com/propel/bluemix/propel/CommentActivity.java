@@ -1,24 +1,48 @@
 package com.propel.bluemix.propel;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.ibm.mobile.services.data.IBMData;
+import com.propel.bluemix.propel.Adapters.CommentAdapter;
+import com.propel.bluemix.propel.Adapters.PostsAdapter;
+import com.propel.bluemix.propel.Data.Comment;
 import com.propel.bluemix.propel.Data.Item;
 
+import java.util.List;
+
 public class CommentActivity extends AppCompatActivity {
-    private Item item;
-    String text;
-    int likes;
-    String date_time;
+    RecyclerView recyclerView;
+    CommentAdapter commentAdapter;
+    List<Comment> comments;
 
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Nullable
+    protected View onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        IBMData dataService = IBMData.initializeService();  //Initializing object storage capability
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
+        final View view = inflater.inflate(R.layout.activity_comment, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list_comments);
+
+        //get item reference
+
+        Comment comment = new Comment("Hello", 1,"aa");
+        comments.add(comment);
+        commentAdapter = new CommentAdapter(comments);
+        recyclerView.setAdapter(commentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        return view;
     }
 
     @Override

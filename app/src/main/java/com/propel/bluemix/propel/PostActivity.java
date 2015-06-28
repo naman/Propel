@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.propel.bluemix.propel.Data.Item;
-import com.propel.bluemix.propel.Database.DbSingleton;
 import com.propel.bluemix.propel.Fragments.PostFragment;
 
 import java.text.SimpleDateFormat;
@@ -69,15 +67,15 @@ public class PostActivity extends AppCompatActivity {
                 String time = picktime.getText().toString();
                 String date_time = date + "T" + time;
                 Item item = new Item(title, descr, date_time);
-                DbSingleton dbSingleton = DbSingleton.getInstance();
-                int id = dbSingleton.getItemList().size() + 2;
-                Log.d("POST ", item.generateSql(id));
+//                DbSingleton dbSingleton = DbSingleton.getInstance();
+//                int id = dbSingleton.getItemList().size() + 2;
+//                Log.d("POST ", item.generateSql(id));
 
-                dbSingleton.insertQueries(item.generateSql(id));
+//                dbSingleton.insertQueries(item.generateSql(id));
 
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.content_frame, new PostFragment()).commit();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, new PostFragment()).commit();
                 finish();
             }
         });

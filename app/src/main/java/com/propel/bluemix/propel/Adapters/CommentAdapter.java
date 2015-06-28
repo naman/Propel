@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.propel.bluemix.propel.Data.Comment;
 import com.propel.bluemix.propel.Data.Item;
 import com.propel.bluemix.propel.R;
 
@@ -14,10 +15,10 @@ import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewholder> {
 
-    List<Item> items;
+    List<Comment> comments;
 
-    public CommentAdapter(List<Item> items) {
-        this.items = items;
+    public CommentAdapter(List<Comment> items) {
+        this.comments = items;
     }
 
     @Override
@@ -30,25 +31,30 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewhold
 
     @Override
     public void onBindViewHolder(Viewholder viewholder, int i) {
-        Item current = items.get(i);
-        viewholder.text.setText(current.getName());
-        viewholder.date.setText( current.getPost_date().toString());
+        Comment current = comments.get(i);
+        viewholder.text.setText(current.getComment());
+        viewholder.text.setText(current.getLikes());
+        viewholder.text.setText(current.getOfPublish());
+
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return comments.size();
     }
 
     class Viewholder extends RecyclerView.ViewHolder {
         TextView text;
+        TextView likes;
+
         TextView date;
 
         public Viewholder(View itemView) {
             super(itemView);
             itemView.setClickable(true);
-            text= (TextView) itemView.findViewById(R.id.goal_title);
-            date = (TextView) itemView.findViewById(R.id.goal_date);
+            text= (TextView) itemView.findViewById(R.id.textView);
+            likes = (TextView) itemView.findViewById(R.id.textView2);
+            date = (TextView) itemView.findViewById(R.id.textView3);
         }
 
     }

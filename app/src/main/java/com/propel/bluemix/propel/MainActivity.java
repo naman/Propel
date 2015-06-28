@@ -2,14 +2,12 @@ package com.propel.bluemix.propel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.propel.bluemix.propel.Data.Item;
 import com.propel.bluemix.propel.Fragments.PostFragment;
@@ -82,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
                                 Intent push = new Intent(MainActivity.this, PushActivity.class);
                                 startActivity(push);
                                 break;
-
+                            case R.id.nav_comm:
+                                Intent comm = new Intent(MainActivity.this, PushActivity.class);
+                                startActivity(comm);
+                                break;
                         }
 
                         mDrawerLayout.closeDrawers();
