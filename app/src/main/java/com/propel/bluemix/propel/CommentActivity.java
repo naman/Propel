@@ -1,9 +1,7 @@
 package com.propel.bluemix.propel;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.ibm.mobile.services.data.IBMData;
 import com.propel.bluemix.propel.Adapters.CommentAdapter;
-import com.propel.bluemix.propel.Adapters.PostsAdapter;
 import com.propel.bluemix.propel.Data.Comment;
-import com.propel.bluemix.propel.Data.Item;
 
 import java.util.List;
 
@@ -36,11 +32,12 @@ public class CommentActivity extends AppCompatActivity {
 
         //get item reference
 
-        Comment comment = new Comment("Hello", 1,"aa");
+        Comment comment = new Comment("Hello", 1, "aa");
         comments.add(comment);
         commentAdapter = new CommentAdapter(comments);
         recyclerView.setAdapter(commentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         return view;
     }

@@ -2,6 +2,7 @@ package com.propel.bluemix.propel;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,7 +29,6 @@ import java.util.Locale;
 import bolts.Continuation;
 import bolts.Task;
 
-import static com.propel.bluemix.propel.R.color.darkgreen;
 import static com.propel.bluemix.propel.R.color.white;
 
 @SuppressWarnings("ResourceType")
@@ -59,7 +59,7 @@ public class PostActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit_post);
         pickdate = (EditText) findViewById(R.id.date);
         picktime = (EditText) findViewById(R.id.time);
-        submit.setBackgroundColor(darkgreen);
+        submit.setBackgroundColor(Color.CYAN);
         submit.setTextColor(white);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {
@@ -79,12 +79,6 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("SUBMIT", "butoon clicked");
-//                String title = goal.getText().toString();
-//                String descr = description.getText().toString();
-//                String date = pickdate.getText().toString();
-//                String time = picktime.getText().toString();
-//                String date_time = date + "T" + time;
-//                Item item = new Item(title, descr, date_time);
                 createItem(v);
 
 
@@ -165,15 +159,18 @@ public class PostActivity extends AppCompatActivity {
     }
 
     public void createItem(View v) {
-        EditText itemToAdd = (EditText) findViewById(R.id.edit_goal);
-        String toAdd = itemToAdd.getText().toString();
-        Log.d("CREATE1","item1");
-        if (!toAdd.equals("")) {
-            Log.d("CREATE","item");
-            Item item = new Item(toAdd, "ABCDFR", "ASDASFD");
+        String title = goal.getText().toString();
+        String descr = description.getText().toString();
+        String date = pickdate.getText().toString();
+        String time = picktime.getText().toString();
+        String date_time = date + "T" + time;
+
+        if (!goal.equals("")) {
+            Log.d("CREATE", "item");
+            Item item = new Item(title, descr, date_time);
 
             itemsList = blApplication.itemList;
-            Log.d("SIZE ITEM",itemsList.size()+"");
+            Log.d("SIZE ITEM", itemsList.size() + "");
             DbSingleton dbSingleton = DbSingleton.getInstance();
             dbSingleton.clearDatabase(DbContract.Posts.TABLE_NAME);
             int id = 1;
@@ -181,7 +178,7 @@ public class PostActivity extends AppCompatActivity {
 
             for (Item item1 : itemsList) {
                 String query = item1.generateSql(id);
-                Log.d("qUERY",query);
+                Log.d("qUERY", query);
                 id++;
                 dbSingleton.insertQueries(query);
             }
@@ -210,7 +207,7 @@ public class PostActivity extends AppCompatActivity {
             });
 
             // Set text field back to empty after item is added.
-            itemToAdd.setText("");
+            goal.setText("");
         }
     }
 }

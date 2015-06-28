@@ -14,7 +14,6 @@ import com.ibm.mobile.services.data.IBMDataException;
 import com.ibm.mobile.services.data.IBMQuery;
 import com.propel.bluemix.propel.Data.Item;
 import com.propel.bluemix.propel.Database.DbSingleton;
-import com.propel.bluemix.propel.Fragments.ABCFragment;
 import com.propel.bluemix.propel.Fragments.ViewFragment;
 
 import java.util.Collections;
@@ -28,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String CLASS_NAME = "MainActivity";
     List<Item> itemList;
+    DbSingleton dbSingleton;
     private DrawerLayout mDrawerLayout;
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    DbSingleton dbSingleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setUpNavDrawer();
 
         dbSingleton = DbSingleton.getInstance();
-		/* Use application class to maintain global state. */
+        /* Use application class to maintain global state. */
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         // Clear local itemList.
                         // We'll be reordering and repopulating from DataService.
                         itemList.clear();
-                      //  dbSingleton.clearDatabase(DbContract.Posts.TABLE_NAME);
+                        //  dbSingleton.clearDatabase(DbContract.Posts.TABLE_NAME);
 //                        for (IBMDataObject item : objects) {
 //                            int i =1;
 //                            itemList.add((Item) item);
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 //                        }
                         sortItems(itemList);
 
-                        }
+                    }
                     return null;
                 }
             }, Task.UI_THREAD_EXECUTOR);
@@ -148,22 +147,11 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.content_frame, new ViewFragment()).commit();
                                 break;
-//                            case R.id.nav_updates:
-//                                Intent post = new Intent(MainActivity.this, PostActivity.class);
-//                                startActivity(post);
-//                                break;
                             case R.id.nav_PUSH:
                                 Intent push = new Intent(MainActivity.this, PushActivity.class);
                                 startActivity(push);
                                 break;
-                            case R.id.nav_comm:
-                                Intent comm = new Intent(MainActivity.this, PushActivity.class);
-                                startActivity(comm);
-                                break;
-                            case R.id.frag:
-                                fragmentManager.beginTransaction()
-                                        .replace(R.id.content_frame, new ABCFragment()).commit();
-                                break;
+
                         }
 
                         mDrawerLayout.closeDrawers();
