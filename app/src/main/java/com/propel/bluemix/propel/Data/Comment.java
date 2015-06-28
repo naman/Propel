@@ -1,35 +1,24 @@
 package com.propel.bluemix.propel.Data;
 
-import java.util.Date;
-
 public class Comment {
-    Item reference;
     String comment;
     int likes;
-    String ofPublish;
+    String DateofPublish;
 
 
-    public Comment(String comment, int likes, String ofPublish) {
-        this.reference = reference;
+    public Comment(String comment, int likes, String DateofPublish) {
+
         this.comment = comment;
         this.likes = likes;
-        this.ofPublish = ofPublish;
+        this.DateofPublish = DateofPublish;
     }
 
-    public String getOfPublish() {
-        return ofPublish;
+    public String getDateofPublish() {
+        return DateofPublish;
     }
 
-    public void setOfPublish(String ofPublish) {
-        this.ofPublish = ofPublish;
-    }
-
-    public Item getReference() {
-        return reference;
-    }
-
-    public void setReference(Item reference) {
-        this.reference = reference;
+    public void setDateofPublish(String dateofPublish) {
+        DateofPublish = dateofPublish;
     }
 
     public String getComment() {

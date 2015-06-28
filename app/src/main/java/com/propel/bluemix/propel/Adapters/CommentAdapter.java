@@ -34,7 +34,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewhold
         Comment current = comments.get(i);
         viewholder.text.setText(current.getComment());
         viewholder.text.setText(current.getLikes());
-        viewholder.text.setText(current.getOfPublish());
+        viewholder.text.setText(current.getDateofPublish());
 
     }
 

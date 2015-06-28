@@ -83,25 +83,29 @@ public class DbSingleton {
     }
 
 
-    public ArrayList<Comment> getCommentByPostId() {
+    public ArrayList<Comment> getCommentByPostId(int id) {
         getReadOnlyDatabase();
         String sortOrder = DbContract.Comments.ID + ASCENDING;
+        String selection = DbContract.Comments.POST_ID +EQUAL + id;
         Cursor cur = mDb.query(
                 DbContract.Comments.TABLE_NAME,
                 DbContract.Comments.FULL_PROJECTION,
-                null,
+                selection,
                 null,
                 null,
                 null,
                 sortOrder
         );
-        ArrayList<Comment> items = new ArrayList<>();
+            ArrayList<Comment> items = new ArrayList<>();
         Comment current;
 
         cur.moveToFirst();
         while (!cur.isAfterLast()) {
-
-            //items.add(current);
+            current = new Comment(cur.getString(cur.getColumnIndex(DbContract.Comments.COMMENT_TEXT)),
+                    cur.getInt(cur.getColumnIndex(DbContract.Comments.LIKES)),
+                    cur.getString(cur.getColumnIndex(DbContract.Comments.DATE_TIME)));
+            items.add(current);
+                cur.moveToNext();
         }
         cur.close();
         return items;
