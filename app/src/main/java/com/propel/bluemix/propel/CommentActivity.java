@@ -1,20 +1,20 @@
 package com.propel.bluemix.propel;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ibm.mobile.services.data.IBMData;
 import com.propel.bluemix.propel.Adapters.CommentAdapter;
 import com.propel.bluemix.propel.Data.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentActivity extends AppCompatActivity {
@@ -22,24 +22,33 @@ public class CommentActivity extends AppCompatActivity {
     CommentAdapter commentAdapter;
     List<Comment> comments;
 
-    @Nullable
-    protected View onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        IBMData dataService = IBMData.initializeService();  //Initializing object storage capability
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        IBMData dataService = IBMData.initializeService();  //Initializing object storage capability
         setContentView(R.layout.activity_comment);
-        final View view = inflater.inflate(R.layout.activity_comment, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.list_comments);
-
-        //get item reference
-
-        Comment comment = new Comment("Hello", 1, "aa");
-        comments.add(comment);
-        commentAdapter = new CommentAdapter(comments);
-        recyclerView.setAdapter(commentAdapter);
+        recyclerView = (RecyclerView) findViewById(R.id.list_comments);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //get item reference
+        comments = new ArrayList<>();
+        Comment comment = new Comment("Good start", 1, "You should go on like this. You'll succeed on day ");
+        Comment comment1 = new Comment("Hard work", 2, "Hard work is the way to go");
+        comments.add(comment);
+        comments.add(comment1);
+        commentAdapter = new CommentAdapter(comments);
+        recyclerView.setAdapter(commentAdapter);
+        FloatingActionButton fab_add_post = (FloatingActionButton) findViewById(R.id.fab_add_comment);
+        fab_add_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(view.getContext(), "FAB pressed", Toast.LENGTH_SHORT).show();
 
-        return view;
+//                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+//                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

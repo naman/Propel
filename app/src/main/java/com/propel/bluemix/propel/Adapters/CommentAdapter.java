@@ -1,13 +1,13 @@
 package com.propel.bluemix.propel.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.propel.bluemix.propel.Data.Comment;
-import com.propel.bluemix.propel.Data.Item;
 import com.propel.bluemix.propel.R;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewhold
     }
 
     @Override
-    public Viewholder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.list_items_comments, viewGroup, false);
+    public Viewholder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.list_items_comments, parent, false);
         Viewholder viewholder = new Viewholder(view);
         return viewholder;
     }
@@ -32,9 +32,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewhold
     @Override
     public void onBindViewHolder(Viewholder viewholder, int i) {
         Comment current = comments.get(i);
+        Log.d("comment adapter size", comments.size() + "");
         viewholder.text.setText(current.getComment());
-        viewholder.text.setText(current.getLikes());
-        viewholder.text.setText(current.getDateofPublish());
+       // viewholder.likes.setText(current.getLikes());
+        viewholder.date.setText(current.getDateofPublish());
 
     }
 
@@ -46,15 +47,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.Viewhold
     class Viewholder extends RecyclerView.ViewHolder {
         TextView text;
         TextView likes;
-
         TextView date;
 
         public Viewholder(View itemView) {
             super(itemView);
             itemView.setClickable(true);
-            text= (TextView) itemView.findViewById(R.id.textView);
-            likes = (TextView) itemView.findViewById(R.id.textView2);
-            date = (TextView) itemView.findViewById(R.id.textView3);
+            text = (TextView) itemView.findViewById(R.id.comment_title);
+            //likes = (TextView) itemView.findViewById(R.id.comm);
+            date = (TextView) itemView.findViewById(R.id.comment_date);
         }
 
     }
